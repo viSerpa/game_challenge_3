@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b8fy4i4jfdudd"]
+
+[ext_resource type="Script" uid="uid://dx7hq7hoqfi0o" path="res://components/spawn_enemies_component.gd" id="1_v3jv5"]
+[ext_resource type="PackedScene" uid="uid://nusoaci3s6vp" path="res://scenes/red_alien.tscn" id="2_3sj1p"]
+[ext_resource type="PackedScene" uid="uid://c0lkatlv7eqea" path="res://scenes/yellow_alien.tscn" id="2_v3jv5"]
+[ext_resource type="Script" uid="uid://cvaib78jl1lne" path="res://components/move_grid_enemies_component.gd" id="3_3sj1p"]
+[ext_resource type="PackedScene" uid="uid://dftokn8a8xvj2" path="res://scenes/green_alien.tscn" id="4_lhb4l"]
+[ext_resource type="PackedScene" uid="uid://dva5uit3aynfr" path="res://scenes/mothership.tscn" id="5_a0ijb"]
+[ext_resource type="Script" uid="uid://c174csc08mkhf" path="res://components/enemy_shoot_component.gd" id="6_ifowr"]
+[ext_resource type="PackedScene" uid="uid://c2onp7h6cldy6" path="res://scenes/enemy_bullet.tscn" id="7_aswil"]
+[ext_resource type="Script" uid="uid://dpf25np11ntpe" path="res://components/score_component.gd" id="8_18lvm"]
+
+[node name="SpawnEnemiesComponent" type="Node2D" unique_id=630553501 node_paths=PackedStringArray("score_component")]
+script = ExtResource("1_v3jv5")
+yellow_enemy_scene = ExtResource("2_v3jv5")
+red_enemy_scene = ExtResource("2_3sj1p")
+green_enemy_scene = ExtResource("4_lhb4l")
+mothership_scene = ExtResource("5_a0ijb")
+enemy_count = 5
+score_component = NodePath("ScoreComponent")
+
+[node name="MoveGridEnemiesComponent" type="Node" parent="." unique_id=404812536 node_paths=PackedStringArray("enemies")]
+script = ExtResource("3_3sj1p")
+enemies = NodePath("..")
+metadata/_custom_type_script = "uid://cvaib78jl1lne"
+
+[node name="EnemyShootComponent" type="Node" parent="." unique_id=2114414698 node_paths=PackedStringArray("spawn_enemies_component")]
+script = ExtResource("6_ifowr")
+spawn_enemies_component = NodePath("..")
+enemy_bullet_scene = ExtResource("7_aswil")
+metadata/_custom_type_script = "uid://c174csc08mkhf"
+
+[node name="ScoreComponent" type="Node" parent="." unique_id=527062766]
+script = ExtResource("8_18lvm")
+points = 10
+metadata/_custom_type_script = "uid://dpf25np11ntpe"

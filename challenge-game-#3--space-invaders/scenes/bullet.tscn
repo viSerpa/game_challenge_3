@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cdv0id74xnl7q"]
+
+[ext_resource type="Script" uid="uid://bn6kbhh3uwqje" path="res://components/move_component.gd" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://daky8vxj71n54" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="Script" uid="uid://c0fjlhq1diqlm" path="res://components/hurtbox_component.gd" id="3_l5glv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_625hm"]
+size = Vector2(42.66667, 49.02858)
+
+[node name="Bullet" type="Area2D" unique_id=234855644]
+scale = Vector2(0.09374999, 0.22435893)
+script = ExtResource("1_y25gk")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1254367782]
+scale = Vector2(0.5, 0.6875)
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(0, 1.0626659e-06, 0, -71.3143, 85.333336, -71.3143, 85.333336, 1.0626659e-06)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=765831293]
+position = Vector2(21.333332, -24.514288)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_625hm")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=287217342 node_paths=PackedStringArray("actor")]
+script = ExtResource("1_mkf8s")
+actor = NodePath("..")
+velocity = Vector2(0, -500)
+metadata/_custom_type_script = "uid://bn6kbhh3uwqje"
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1895227654]
+script = ExtResource("3_l5glv")
+metadata/_custom_type_script = "uid://c0fjlhq1diqlm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1998567141]
+position = Vector2(21.333332, -24.514288)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_625hm")
+
+[connection signal="area_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_area_entered"]
+[connection signal="body_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_entered"]

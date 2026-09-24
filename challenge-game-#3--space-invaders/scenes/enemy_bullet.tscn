@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c2onp7h6cldy6"]
+
+[ext_resource type="Script" uid="uid://bn6kbhh3uwqje" path="res://components/move_component.gd" id="1_d2qol"]
+[ext_resource type="Script" uid="uid://ca1ukw74d4l23" path="res://scripts/enemy_bullet.gd" id="1_qx7rs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx7rs"]
+size = Vector2(31.00001, 34)
+
+[node name="EnemyBullet" type="Area2D" unique_id=1649663823]
+script = ExtResource("1_qx7rs")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1664207267]
+scale = Vector2(0.05859374, 0.28044865)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0, 1.0626659e-06, 0, -71.3143, 290.1334, -71.31431, 290.1334, -35.657154, 290.1334, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25433314]
+position = Vector2(8.499998, -10)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_qx7rs")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=1856539831 node_paths=PackedStringArray("actor")]
+script = ExtResource("1_d2qol")
+actor = NodePath("..")
+velocity = Vector2(0, 200)
+metadata/_custom_type_script = "uid://bn6kbhh3uwqje"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

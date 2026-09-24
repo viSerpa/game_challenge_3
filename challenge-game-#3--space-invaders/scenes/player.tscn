@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dnd0854vuh0n1"]
+
+[ext_resource type="Texture2D" uid="uid://npr5f0lgwe0l" path="res://assets/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bn6kbhh3uwqje" path="res://components/move_component.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://bqcp230f53thw" path="res://scripts/player.gd" id="1_ur7pv"]
+[ext_resource type="Script" uid="uid://c1wgb8h7h1d5n" path="res://components/move_input_component.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bibccsotms4qo" path="res://components/health_component.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://b0e0gr71g0t8m" path="res://components/bullet_component.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://caj7wjpvhhmdy" path="res://components/shoot_component.gd" id="5_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cdv0id74xnl7q" path="res://scenes/bullet.tscn" id="6_fjrip"]
+[ext_resource type="Script" uid="uid://nres5mqmlfms" path="res://components/player_hit_box_component.gd" id="8_smehm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_625hm"]
+size = Vector2(42, 12)
+
+[node name="Player" type="CharacterBody2D" unique_id=937116260]
+script = ExtResource("1_ur7pv")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=991177296]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=810403049]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_625hm")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=288762429 node_paths=PackedStringArray("actor")]
+script = ExtResource("1_g2els")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bn6kbhh3uwqje"
+
+[node name="MoveInputComponent" type="Node" parent="." unique_id=43473867 node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_qhqgy")
+move_component = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://c1wgb8h7h1d5n"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=483609560]
+script = ExtResource("4_dqkch")
+max_health = 3
+metadata/_custom_type_script = "uid://bibccsotms4qo"
+
+[node name="BulletComponent" type="Node" parent="." unique_id=459773443 node_paths=PackedStringArray("actor")]
+script = ExtResource("5_qlg0r")
+bullet_scene = ExtResource("6_fjrip")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://b0e0gr71g0t8m"
+
+[node name="ShootComponent" type="Node" parent="." unique_id=1808113864 node_paths=PackedStringArray("bullet_component")]
+script = ExtResource("5_tuyoq")
+bullet_component = NodePath("../BulletComponent")
+metadata/_custom_type_script = "uid://caj7wjpvhhmdy"
+
+[node name="PlayerHitBoxComponent" type="Area2D" parent="." unique_id=1991386653 node_paths=PackedStringArray("health_component")]
+script = ExtResource("8_smehm")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://nres5mqmlfms"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBoxComponent" unique_id=1237686689]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_625hm")
+
+[connection signal="game_over" from="HealthComponent" to="." method="_on_health_component_game_over"]
+[connection signal="player_hit" from="HealthComponent" to="." method="_on_health_component_player_hit"]
+[connection signal="area_entered" from="PlayerHitBoxComponent" to="PlayerHitBoxComponent" method="_on_area_entered"]
+[connection signal="body_entered" from="PlayerHitBoxComponent" to="PlayerHitBoxComponent" method="_on_body_entered"]

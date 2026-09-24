@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dva5uit3aynfr"]
+
+[ext_resource type="Texture2D" uid="uid://dd17qgqegxynv" path="res://assets/SpaceInvaders.png" id="1_nmebv"]
+[ext_resource type="Script" uid="uid://doyc6s1m4aunh" path="res://scripts/mothership.gd" id="1_wkrrd"]
+[ext_resource type="Script" uid="uid://bibccsotms4qo" path="res://components/health_component.gd" id="3_pyyo8"]
+[ext_resource type="Script" uid="uid://bn6kbhh3uwqje" path="res://components/move_component.gd" id="4_wkrrd"]
+[ext_resource type="Script" uid="uid://dpf25np11ntpe" path="res://components/score_component.gd" id="6_1q8lc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54pwq"]
+size = Vector2(54, 26)
+
+[node name="Mothership" type="Area2D" unique_id=177421740 node_paths=PackedStringArray("move_component", "score_component", "health_component")]
+script = ExtResource("1_wkrrd")
+move_component = NodePath("MoveComponent")
+score_component = NodePath("ScoreComponent")
+health_component = NodePath("HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399722055]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_54pwq")
+
+[node name="SpaceInvaders" type="Sprite2D" parent="." unique_id=177832316]
+scale = Vector2(3, 3.466667)
+texture = ExtResource("1_nmebv")
+region_enabled = true
+region_rect = Rect2(46, 0, 20, 15)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=734511807]
+script = ExtResource("3_pyyo8")
+max_health = 1
+metadata/_custom_type_script = "uid://bibccsotms4qo"
+
+[node name="ScoreComponent" type="Node" parent="." unique_id=399805552]
+script = ExtResource("6_1q8lc")
+points = 100
+metadata/_custom_type_script = "uid://dpf25np11ntpe"
+
+[node name="MoveComponent" type="Node" parent="." unique_id=1512460656 node_paths=PackedStringArray("actor")]
+script = ExtResource("4_wkrrd")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bn6kbhh3uwqje"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="mothership_died" from="HealthComponent" to="." method="_on_mothership_died"]

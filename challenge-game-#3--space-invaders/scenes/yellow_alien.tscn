@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c0lkatlv7eqea"]
+
+[ext_resource type="Texture2D" uid="uid://ckpt7lkv1rdk2" path="res://assets/yellow.png" id="1_7l6iu"]
+[ext_resource type="Script" uid="uid://csa4eg4der8ia" path="res://components/hit_box_component.gd" id="3_ums37"]
+[ext_resource type="Script" uid="uid://bibccsotms4qo" path="res://components/health_component.gd" id="4_6hvcs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_625hm"]
+size = Vector2(32, 32)
+
+[node name="YellowAlien" type="CharacterBody2D" unique_id=76397293]
+
+[node name="Yellow" type="Sprite2D" parent="." unique_id=1666878712]
+texture = ExtResource("1_7l6iu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77526795]
+shape = SubResource("RectangleShape2D_625hm")
+
+[node name="HitBoxComponent" type="Area2D" parent="." unique_id=1713863558 node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_ums37")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://csa4eg4der8ia"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent" unique_id=1344167746]
+shape = SubResource("RectangleShape2D_625hm")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=621843036]
+script = ExtResource("4_6hvcs")
+max_health = 1
+metadata/_custom_type_script = "uid://bibccsotms4qo"

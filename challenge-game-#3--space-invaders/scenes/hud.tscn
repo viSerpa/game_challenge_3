@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://okj068bdrqwp"]
+
+[ext_resource type="Script" uid="uid://bdhjivm7i4fkv" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_625hm"]
+
+[node name="Hud" type="Control" unique_id=2129806367 node_paths=PackedStringArray("life_bar_1", "life_bar_2", "life_bar_3", "game_over_screen", "score_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahhtf")
+life_bar_1 = NodePath("HealthPanel/LifeBar1")
+life_bar_2 = NodePath("HealthPanel/LifeBar2")
+life_bar_3 = NodePath("HealthPanel/LifeBar3")
+game_over_screen = NodePath("GameOverPanel")
+score_label = NodePath("ScorePanel/ScoreLabel")
+
+[node name="HealthPanel" type="Panel" parent="." unique_id=1094849255]
+layout_mode = 0
+offset_right = 184.0
+offset_bottom = 40.0
+
+[node name="LifeBar1" type="TextureRect" parent="HealthPanel" unique_id=757387461]
+modulate = Color(0.49019608, 0, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 32.0
+texture = SubResource("CanvasTexture_625hm")
+
+[node name="LifeBar2" type="TextureRect" parent="HealthPanel" unique_id=1216295198]
+modulate = Color(0.49019608, 0, 0, 1)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 32.0
+texture = SubResource("CanvasTexture_625hm")
+
+[node name="LifeBar3" type="TextureRect" parent="HealthPanel" unique_id=711428507]
+modulate = Color(0.49019608, 0, 0, 1)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 8.0
+offset_right = 168.0
+offset_bottom = 32.0
+texture = SubResource("CanvasTexture_625hm")
+
+[node name="HealthLabel" type="Label" parent="HealthPanel" unique_id=1849126081]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 32.0
+text = "HEALTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel" type="Panel" parent="." unique_id=867082188]
+layout_mode = 0
+offset_left = 976.0
+offset_right = 1152.0
+offset_bottom = 32.0
+
+[node name="ScoreLabel" type="Label" parent="ScorePanel" unique_id=758289344]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -11.5
+offset_right = 80.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE = 999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="Panel" parent="." unique_id=1539639854]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -68.0
+offset_right = 152.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel" unique_id=1752274902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -56.0
+offset_right = 112.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="GameOverPanel" unique_id=676157265]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -33.0
+offset_right = 88.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.427493, 0.42749307, 0.42749307, 1)
+text = "Press LMB to restart..."
+horizontal_alignment = 1
+vertical_alignment = 1
