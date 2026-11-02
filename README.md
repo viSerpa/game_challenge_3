@@ -1,23 +1,23 @@
 # Space Invaders - 20 Games Challenge - #3
 Space Invaders — A clone of Space Invaders built using Godot & GDScript.
 
-##Features
+## Features
 - 3 Lives
 - Mothership (Bonus points)
 - Shooting Enemies
 
-##How to Play
+## How to Play
 Controls:
 A / D — Move Ship / Player.
 Spacebar — Shoot.
 Objective: Kill all of the enemies without loosing all of your lives.
 
-##Setup & Installation
+## Setup & Installation
 Prerequisites: Godot version 4.7 or later.
 Clone the repo: [git clone https://github.com](https://github.com/viSerpa/game_challenge_3.git)
 Run the game: Press F5 to play game.
 
-##What I Learned
+## What I Learned
 This is the third game of the 20 Game Challenge. I chose Space Invaders.
 
 Making the player movement was similar to Breakout:
