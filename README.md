@@ -10,12 +10,13 @@ Space Invaders — A clone of Space Invaders built using Godot & GDScript.
 Controls:
 - A / D — Move Ship / Player.
 - Spacebar — Shoot.
+
 Objective:
 - Kill all of the enemies without loosing all of your lives.
 
 ## Setup & Installation
 - **Prerequisites**: Godot version 4.7 or later.
-- **Clone the repo**: [git clone https://github.com](https://github.com/viSerpa/game_challenge_3.git)
+- **Clone the repo**: (https://github.com/viSerpa/game_challenge_3.git)
 - **Run the game**: Press F5 to play game.
 
 ## What I Learned
